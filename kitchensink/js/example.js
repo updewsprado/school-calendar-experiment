@@ -5,6 +5,8 @@ angular
 
     var vm = this;
     vm.viewType = true;
+    vm.listOfDependents = ['All Dependents', 'Sy Tuo', 'Sy Una', 'Sy Mommy'];
+    vm.selectedDependent = 'All Dependents';
 
     //These variables MUST be set as a minimum for the calendar to work
     vm.calendarView = 'month';

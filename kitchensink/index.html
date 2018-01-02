@@ -35,14 +35,11 @@
           ng-click="vm.scheduleViewClicked('detailed')">Detailed</button>
     </div>
     <div class="col-xs-6 text-right">
-      <!-- <h4>Student Dependent Dropdown</h4> -->
       <div class="form-group">
         <label for="sel1">Student Dependent:</label>
-        <select class="form-control" id="sel1">
-          <option>All Dependents</option>
-          <option>Sy Tuo</option>
-          <option>Sy Una</option>
-          <option>Sy Mommy</option>
+        <select id="selDependent" class="form-control" 
+            ng-model="vm.selectedDependent"
+            ng-options="item for item in vm.listOfDependents">
         </select>
       </div>
     </div>
