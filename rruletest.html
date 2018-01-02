@@ -315,10 +315,16 @@
       },
     ];
 
+  var test = [];
+
   // Create calendar events per section
   sections.forEach(function(section) {
     // sectionToCalendarEvents(section, 'detailed');
-    sectionToCalendarEvents(section);
+    var temp_events = sectionToCalendarEvents(section);
+
+    temp_events.forEach(function(temp_event) {
+      test.push(temp_event);
+    })
   })
 
   function scheduleToPartialEvents(schedule, date_start, until) {
@@ -359,12 +365,14 @@
 
         partial_events.forEach(function(event) {
           event.title = title + subject.subject;
+          event.dependent = section.dependent;
           events.push(event);
         })
       });
     });
 
     console.log(events);
+    return events;
   }
 
   function convertToSimpleSectionSchedule(section) {

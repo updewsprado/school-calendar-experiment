@@ -408,7 +408,13 @@ angular
           vm.events = vm.simpleEvents;
         };
       };
+
+      console.log("all events displayed: ", vm.events);
     };
+
+    vm.filterDependent = function() {
+      console.log("Currently selected dependent: ", vm.selectedDependent);
+    }
 
     // Initialize
     vm.scheduleViewClicked();
@@ -470,6 +476,8 @@ angular
                 event.color = calendarConfig.colorTypes.important;
               }
             }
+
+            event.dependent = section.dependent;
 
             // event.color = calendarConfig.colorTypes.important;
             events.push(event);

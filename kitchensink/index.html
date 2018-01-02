@@ -38,6 +38,7 @@
       <div class="form-group">
         <label for="sel1">Student Dependent:</label>
         <select id="selDependent" class="form-control" 
+            ng-change="vm.filterDependent()"
             ng-model="vm.selectedDependent"
             ng-options="item for item in vm.listOfDependents">
         </select>
