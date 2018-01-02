@@ -4,6 +4,7 @@ angular
   .controller('KitchenSinkCtrl', function($scope, moment, alert, calendarConfig) {
 
     var vm = this;
+    vm.viewType = true;
 
     //These variables MUST be set as a minimum for the calendar to work
     vm.calendarView = 'month';
@@ -363,14 +364,52 @@ angular
       },
     ];
 
-    sections.forEach(function(section) {
-      var temp_events = sectionToCalendarEvents(section);
-      // var temp_events = sectionToCalendarEvents(section, 'detailed');
-      
-      temp_events.forEach(function(event) {
-        vm.events.push(event);
-      });
-    })
+    vm.simpleEvents = null;
+    vm.detailedEvents = null;
+
+    vm.scheduleViewClicked = function(viewtype='simple') {
+      console.log("scheduleViewClicked: " + viewtype);
+
+      if (viewtype == 'detailed') {
+        if (!vm.detailedEvents) {
+          vm.events = [];
+          sections.forEach(function(section) {
+            var temp_events = sectionToCalendarEvents(section, viewtype);
+
+            temp_events.forEach(function(event) {
+              vm.events.push(event);
+            });
+          })
+
+          vm.detailedEvents = vm.events;
+        } 
+        else {
+          console.log("load stored detailedEvents");
+          vm.events = vm.detailedEvents;
+        };
+      } 
+      else {
+        if (!vm.simpleEvents) {
+          vm.events = [];
+          sections.forEach(function(section) {
+            var temp_events = sectionToCalendarEvents(section);
+
+            temp_events.forEach(function(event) {
+              vm.events.push(event);
+            });
+          })
+
+          vm.simpleEvents = vm.events;
+        } 
+        else {
+          console.log("load stored simpleEvents");
+          vm.events = vm.simpleEvents;
+        };
+      };
+    };
+
+    // Initialize
+    vm.scheduleViewClicked();
 
     function scheduleToPartialEvents(schedule, date_start, until) {
       var partial_events = [];
@@ -445,8 +484,10 @@ angular
       var subjects_single_entry = {};
       // This is only used for duration computation
       var temp_date = moment().format('YYYY-MM-DD');
+      // Create a copy of the "section"
+      temp_section = angular.copy(section);
 
-      subjects_single_entry.subject = section.curriculum;
+      subjects_single_entry.subject = temp_section.curriculum;
       subjects_single_entry.schedules = [];
 
       var temp_dow_subjects = {
@@ -483,7 +524,7 @@ angular
       days_of_week = ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
 
       // sort subjects into individual dow first
-      section.subjects.forEach(function(subject) {
+      temp_section.subjects.forEach(function(subject) {
         subject.schedules.forEach(function(schedule) {
           var temp_start = schedule.time_start;
           var temp_end = moment(temp_date + ' ' + temp_start).add(schedule.duration, 'minute').format('HH:mm');
@@ -532,8 +573,8 @@ angular
         }
       });
 
-      section.subjects = [subjects_single_entry];
-      return section;
+      temp_section.subjects = [subjects_single_entry];
+      return temp_section;
     }
 
     vm.cellIsOpen = true;
