@@ -27,7 +27,7 @@
   <div class="row">
     <div class="col-xs-6 text-left">
       <!-- <h4>Schedule View (Simple / Detailed)</h4> -->
-      <label>Schedule View &nbsp;</label>
+      <label>Schedule View</label><br>
       <!-- <input type="checkbox" data-toggle="toggle" data-on="Detailed" data-off="Simple" data-onstyle="info"> -->
       <button type="button" class="btn btn-default" 
           ng-click="vm.scheduleViewClicked()">Simple</button>
@@ -35,7 +35,16 @@
           ng-click="vm.scheduleViewClicked('detailed')">Detailed</button>
     </div>
     <div class="col-xs-6 text-right">
-      <h4>Student Dependent Dropdown</h4>
+      <!-- <h4>Student Dependent Dropdown</h4> -->
+      <div class="form-group">
+        <label for="sel1">Student Dependent:</label>
+        <select class="form-control" id="sel1">
+          <option>All Dependents</option>
+          <option>Sy Tuo</option>
+          <option>Sy Una</option>
+          <option>Sy Mommy</option>
+        </select>
+      </div>
     </div>
   </div>
 
