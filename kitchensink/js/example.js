@@ -24,43 +24,7 @@ angular
     }];
 
     vm.filteredEvents = [];
-    vm.events = [
-      {
-        title: 'An event',
-        color: calendarConfig.colorTypes.warning,
-        startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
-        endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate(),
-        draggable: true,
-        resizable: true,
-        actions: actions
-      }, 
-      {
-        title: '<i class="glyphicon glyphicon-asterisk"></i> <span class="text-primary">Another event</span>, with a <i>html</i> title',
-        color: calendarConfig.colorTypes.info,
-        startsAt: moment().subtract(1, 'day').toDate(),
-        endsAt: moment().add(5, 'days').toDate(),
-        draggable: true,
-        resizable: true,
-        actions: actions
-      }, 
-      {
-        title: 'This is a really long event title that occurs on every year',
-        color: calendarConfig.colorTypes.important,
-        startsAt: moment().startOf('day').add(7, 'hours').toDate(),
-        endsAt: moment().startOf('day').add(19, 'hours').toDate(),
-        recursOn: 'year',
-        draggable: true,
-        resizable: true,
-        actions: actions
-      }, 
-      {
-        title: 'Violin Lessons for Adults (2017) [Sy Mommy]',
-        color: calendarConfig.colorTypes.warning,
-        startsAt: moment('2017-12-16').add(8, 'hours').toDate(),
-        endsAt: moment('2017-12-16').add(10, 'hours').toDate(),
-        actions: actions
-      }
-    ];
+    vm.events = [];
 
     var sections = [
       {
