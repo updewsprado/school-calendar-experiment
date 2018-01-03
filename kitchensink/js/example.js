@@ -412,13 +412,13 @@ angular
       };
 
       vm.filteredEvents = vm.events.filter(filterDependent);
-      console.log("all events displayed: ", vm.events);
+      // console.log("all events displayed: ", vm.events);
       console.log("filtered events (" + vm.selectedDependent + "): ", vm.filteredEvents);
     };
 
     vm.selectDependent = function(dependent) {
       console.log("Currently selected dependent: ", vm.selectedDependent);
-      
+
       vm.filteredEvents = vm.events.filter(filterDependent);
       console.log(vm.filteredEvents);
     }
@@ -475,10 +475,10 @@ angular
 
           partial_events.forEach(function(event) {
             if (viewtype == 'detailed') {
-              event.title = title + ' | ' + subject.subject;
+              event.title = section.name + ' | ' + subject.subject + ' [' + section.dependent + ']';
             }
             else {
-              event.title = title;
+              event.title = section.curriculum + ' - ' + section.name + ' [' + section.dependent + ']';
             }
             
             if ( (section.payment_status == 'paid') | (section.payment_status == 'partially_paid') ) {
