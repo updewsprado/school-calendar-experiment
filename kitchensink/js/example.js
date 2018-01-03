@@ -22,6 +22,8 @@ angular
         alert.show('Deleted', args.calendarEvent);
       }
     }];
+
+    vm.filteredEvents = [];
     vm.events = [
       {
         title: 'An event',
@@ -409,11 +411,25 @@ angular
         };
       };
 
+      vm.filteredEvents = vm.events.filter(filterDependent);
       console.log("all events displayed: ", vm.events);
+      console.log("filtered events (" + vm.selectedDependent + "): ", vm.filteredEvents);
     };
 
-    vm.filterDependent = function() {
+    vm.selectDependent = function(dependent) {
       console.log("Currently selected dependent: ", vm.selectedDependent);
+      
+      vm.filteredEvents = vm.events.filter(filterDependent);
+      console.log(vm.filteredEvents);
+    }
+
+    function filterDependent(section) {
+      if (vm.selectedDependent != 'All Dependents') {
+        return section.dependent == vm.selectedDependent;
+      }
+      else {
+        return true;
+      }
     }
 
     // Initialize

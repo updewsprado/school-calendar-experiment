@@ -38,7 +38,7 @@
       <div class="form-group">
         <label for="sel1">Student Dependent:</label>
         <select id="selDependent" class="form-control" 
-            ng-change="vm.filterDependent()"
+            ng-change="vm.selectDependent()"
             ng-model="vm.selectedDependent"
             ng-options="item for item in vm.listOfDependents">
         </select>
@@ -96,7 +96,7 @@
   <br>
 
   <mwl-calendar
-    events="vm.events"
+    events="vm.filteredEvents"
     view="vm.calendarView"
     view-title="vm.calendarTitle"
     view-date="vm.viewDate"
